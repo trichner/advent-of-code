@@ -21,111 +21,39 @@ func main() {
 }
 
 func partTwo() {
-	file := in.MustOpenInputTxt(inputs)
+	file := in.MustOpenExampleTxt(inputs)
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
 
-	start := 50
-	pw := 0
-
 	for scanner.Scan() {
 		text := scanner.Text()
 
-		var dir rune
-		var count int
-		_, err := fmt.Sscanf(text, "%c%d", &dir, &count)
-		if err != nil {
-			panic(err)
-		}
-
-		next := start
-
-		if dir == 'R' {
-			next = mod100(next + count)
-
-			//wraparound?
-			if next < start && start != 0 {
-				pw++
-			} else if next == 0 {
-				pw++
-			}
-
-		} else if dir == 'L' {
-			next = mod100(next - count)
-
-			//wraparound?
-			if start < next && start != 0 {
-				pw++
-			} else if next == 0 {
-				pw++
-			}
-		} else {
-			panic("wut?")
-		}
-
-		if count > 100 {
-			pw += count / 100
-		}
-
-		fmt.Printf("%c%d: %d -> %d (%d)\n", dir, count, start, next, pw)
-
-		start = next
+		_ = text
 	}
 
 	if err := scanner.Err(); err != nil {
 		panic(err)
 	}
 
-	// 6561
-	fmt.Printf("part two: %d\n", pw)
+	fmt.Printf("part two: %d\n", 0)
 }
 
 func partOne() {
-	file := in.MustOpenInputTxt(inputs)
+	file := in.MustOpenExampleTxt(inputs)
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
 
-	start := 50
-
-	pw := 0
 	for scanner.Scan() {
 		text := scanner.Text()
 
-		var dir rune
-		var count int
-		_, err := fmt.Sscanf(text, "%c%d", &dir, &count)
-		if err != nil {
-			panic(err)
-		}
-
-		if dir == 'R' {
-			start += count
-		} else if dir == 'L' {
-			start -= count
-		} else {
-			panic("wut?")
-		}
-		start = mod100(start)
-
-		if start == 0 {
-			pw++
-		}
-
+		_ = text
 	}
 
 	if err := scanner.Err(); err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("part one: %d\n", pw)
-}
-
-func mod100(n int) int {
-	v := n % 100
-	if v < 0 {
-		v += 100
-	}
-	return v
+	fmt.Printf("part one: %d\n", 0)
 }
