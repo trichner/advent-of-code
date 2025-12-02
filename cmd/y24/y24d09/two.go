@@ -1,10 +1,11 @@
 package main
 
 import (
-	"aoc/pkg/in"
-	"aoc/pkg/lists"
 	"fmt"
 	"log"
+
+	"aoc/pkg/in"
+	"aoc/pkg/lists"
 )
 
 // some kinda doubly linked list
@@ -47,10 +48,10 @@ func partTwo() {
 	blocks := readDisk(file)
 	head, tail := asLinkedList(blocks)
 
-	//printList(head)
+	// printList(head)
 	compact(head, tail)
-	//printList(head)
-	//printExample(head)
+	// printList(head)
+	// printExample(head)
 
 	// too high: 6401555874641
 	sum := checksumBlocks(head)
@@ -68,7 +69,6 @@ func partTwo() {
 }
 
 func compact(head, tail *Node[*block]) {
-
 	start := head
 
 	for start != nil {
@@ -82,7 +82,7 @@ func compact(head, tail *Node[*block]) {
 		for candidate != nil && candidate != start {
 			candidateValue := candidate.Get()
 			if candidateValue.fid < 0 {
-				//whitespace, try next
+				// whitespace, try next
 				candidate = candidate.Previous()
 				continue
 			}
@@ -101,7 +101,7 @@ func compact(head, tail *Node[*block]) {
 			//}
 
 			if candidateValue.size < current.size {
-				//swap positions
+				// swap positions
 				start.Set(&block{
 					fid:  candidateValue.fid,
 					size: candidateValue.size,
@@ -116,7 +116,7 @@ func compact(head, tail *Node[*block]) {
 
 				// old position can be all whitespace
 
-				//TODO merge this! what if we need to adjust the tail???
+				// TODO merge this! what if we need to adjust the tail???
 
 				prev := candidate.Previous()
 				next := candidate.Next().Next()
@@ -140,7 +140,6 @@ func compact(head, tail *Node[*block]) {
 
 		start = start.Next()
 	}
-
 }
 
 func printExample(head *Node[*block]) {
@@ -180,7 +179,6 @@ func printList(head *Node[*block]) {
 }
 
 func asLinkedList(blocks []*block) (*Node[*block], *Node[*block]) {
-
 	head := &Node[*block]{
 		data: blocks[0],
 	}
@@ -195,7 +193,6 @@ func asLinkedList(blocks []*block) (*Node[*block], *Node[*block]) {
 }
 
 func checksumBlocks(head *Node[*block]) int {
-
 	sum := 0
 	start := 0
 
@@ -218,7 +215,6 @@ func checksumBlocks(head *Node[*block]) int {
 }
 
 func printBlocks(blocks lists.LinkedList[*block]) {
-
 	blocks.ForEach(func(_ int, aBlock *block) {
 		c := '.'
 		if aBlock.fid >= 0 {

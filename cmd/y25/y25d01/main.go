@@ -44,7 +44,7 @@ func partTwo() {
 		if dir == 'R' {
 			next = mod100(next + count)
 
-			//wraparound?
+			// wraparound?
 			if next < start && start != 0 {
 				pw++
 			} else if next == 0 {
@@ -54,7 +54,7 @@ func partTwo() {
 		} else if dir == 'L' {
 			next = mod100(next - count)
 
-			//wraparound?
+			// wraparound?
 			if start < next && start != 0 {
 				pw++
 			} else if next == 0 {

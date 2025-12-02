@@ -1,14 +1,15 @@
 package main
 
 import (
-	"aoc/pkg/lists"
-	"aoc/pkg/util"
 	"embed"
 	"fmt"
 	"io"
 	"slices"
 	"strings"
 	"time"
+
+	"aoc/pkg/lists"
+	"aoc/pkg/util"
 
 	"aoc/pkg/in"
 )
@@ -23,6 +24,7 @@ func main() {
 	elapsed := time.Since(start)
 	fmt.Printf("executed in: %s\n", elapsed)
 }
+
 func partOne() {
 	file := in.MustOpenInputTxt(inputs)
 	defer file.Close()
@@ -62,8 +64,8 @@ func checksumDisk(disk []int16) int {
 	}
 	return sum
 }
-func compactDisk(disk []int16) {
 
+func compactDisk(disk []int16) {
 	last := len(disk) - 1
 	for i := 0; i < len(disk); i++ {
 		c := disk[i]
@@ -106,7 +108,6 @@ type block struct {
 }
 
 func readDisk(r io.Reader) []*block {
-
 	raw := util.Must(io.ReadAll(r))
 	str := string(raw)
 	str = strings.TrimSpace(str)
@@ -118,7 +119,7 @@ func readDisk(r io.Reader) []*block {
 		num := int(byte(rn) - '0')
 
 		if i%2 == 0 {
-			//file
+			// file
 			blockRanges.Append(&block{
 				fid:  id,
 				size: num,
