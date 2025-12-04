@@ -30,7 +30,7 @@ func partTwo() {
 		sum += cm
 	}
 
-	//171518260283767
+	// 171518260283767
 	fmt.Printf("part two: %d\n", sum)
 }
 
@@ -82,7 +82,6 @@ func maxBatteryRec(bank []int, start, depth int, memo map[[2]int]int) int {
 }
 
 func readBanks() [][]int {
-
 	file := in.MustOpenInputTxt(inputs)
 	defer file.Close()
 
