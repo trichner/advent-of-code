@@ -96,7 +96,6 @@ func readWorksheetPartOne() []*column {
 			}
 			columns[i].numbers = append(columns[i].numbers, e)
 		}
-
 	}
 
 	return columns
